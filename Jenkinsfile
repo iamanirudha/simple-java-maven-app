@@ -24,14 +24,18 @@ pipeline {
         }
         stage('Build') {
             steps {
+                script {
+              def mavenHome = tool name: 'maven3'
               sh "${mavenHome}/bin/mvn clean package"
+            }
             }
         }
 
         stage('Deploy to Artifactory') {
           steps {
               script {
- 
+                   def mavenHome = tool name: 'maven3'
+                  def jfrogCliTool = tool name: 'jfrog-cli'
                   sh "${jfrogCliTool}/jf rt config --url=http://172.17.0.2:8081/artifactory --user=admin --apikey=${ARTIFACTORY_CREDENTIALS_ID} --interactive=false"
 
                   // Deploy the Maven artifact using JFrog CLI
