@@ -35,12 +35,8 @@ pipeline {
           steps {
               script {
                    def mavenHome = tool name: 'maven3'
-                  def jfrogCliTool = tool name: 'jfrog-cli'
-                  sh "${jfrogCliTool}/jf rt config --url=http://172.17.0.2:8081/artifactory --user=admin --apikey=${ARTIFACTORY_CREDENTIALS_ID} --interactive=false"
 
-                  // Deploy the Maven artifact using JFrog CLI
-                  // sh "jfrog rt mvn ${ARTIFACTORY_REPO}/ --build-name=my-build --build-number=1 target/*.jar"
-                sh "${mavenHome}/bin/mvn deploy"
+                sh "${mavenHome}/bin/mvn jar:jar deploy:deploy"
               }
           }
       }
