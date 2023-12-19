@@ -21,7 +21,7 @@ pipeline {
 	      }
 	    }
             steps {
-	      jf 'mvn-config  --repo-deploy-releases ${env.MVN_DEPLOY_RELEASE_REPO} --repo-deploy-snapshots ${env.MVN_DEPLOY_SNAPSHOT_REPO}'
+	      jf 'mvn-config  --repo-deploy-releases Aplha --repo-deploy-snapshots Apha-snapshot'
               jf 'mvn clean install'
 	  }
 	}
