@@ -35,6 +35,7 @@ pipeline {
 	      }
 	    }
 	    steps {
+	      jf "rt u target/*.jar ${env.MVN_DEPLOY_RELEASE_REPO} --build-name MODULE2 --build-number ${env.BUILD_NUMBER} 
 	      jf 'rt build-publish'
 	    }
 	  }
