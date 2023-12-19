@@ -29,9 +29,9 @@ pipeline {
               // jf "rt u target/*.jar Aplha/ --build-name module1 --build-number ${env.BUILD_NUMBER}"
               // jf "rt build-publish module1  ${env.BUILD_NUMBER}"
               // jf "rt bpr --copy=true module1  ${env.BUILD_NUMBER} Alpha-Prod "
-              jf "rt build-publish"
-              jf 'rt bce module1 11'
-              jf 'rt bce Devops ${env.BUILD_NUMBER}'
+              jf "rt build-publish --env "APP_VERSION=1.0" --env "BUILD_TYPE=Development""
+              // jf 'rt bce module1 11'
+              // jf 'rt bce Devops ${env.BUILD_NUMBER}'
           }
         }
     }
