@@ -20,9 +20,7 @@ pipeline {
 	  }
 	  
 	  stage('Publish Artifacts') {
-         when {
-            expression { not(anyOf(branch 'UAT'; branch 'Prod')) }
-        }		
+            when { not { anyOf{branch 'UAT', branch 'Prod'}}		
 		    jf 'rt build-publish'	
 	  }
 	
