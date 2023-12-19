@@ -12,12 +12,30 @@ pipeline {
 	
 	stages{
 	  stage('Maven Build'){
-	    jf 'mvn-config  --repo-deploy-releases ${env.MVN_DEPLOY_RELEASE_REPO} --repo-deploy-snapshots ${env.MVN_DEPLOY_SNAPSHOT_REPO}'
-            jf 'mvn clean install'
+            when {
+	      not {
+	        anyOf {
+			branch 'master'; branch 'staging'
+		}
+	      }
+	    }
+            steps {
+	      jf 'mvn-config  --repo-deploy-releases ${env.MVN_DEPLOY_RELEASE_REPO} --repo-deploy-snapshots ${env.MVN_DEPLOY_SNAPSHOT_REPO}'
+              jf 'mvn clean install'
 	  }
+	}
 	  
 	  stage('Publish Artifacts') {
-	    jf 'rt build-publish'	
+            when {
+	      not {
+	        anyOf {
+			branch 'master'; branch 'staging'
+		}
+	      }
+	    }
+	    steps {
+	      jf 'rt build-publish'
+	    }
 	  }
 	
 	}
