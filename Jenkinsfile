@@ -63,7 +63,7 @@ pipeline {
 
         stage('Deploy to Artifactory') {
           steps {
-
+              sh "echo Hi"
               // jf "rt u target/*.jar Aplha/ --build-name module1 --build-number ${env.BUILD_NUMBER}"
               // jf "rt build-publish module1  ${env.BUILD_NUMBER}"
               // jf "rt bpr --copy=true module1  ${env.BUILD_NUMBER} Alpha-Prod "
