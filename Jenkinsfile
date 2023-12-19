@@ -30,6 +30,8 @@ pipeline {
               // jf "rt build-publish module1  ${env.BUILD_NUMBER}"
               // jf "rt bpr --copy=true module1  ${env.BUILD_NUMBER} Alpha-Prod "
               jf "rt build-publish"
+              jf 'rt bce module1 11'
+              jf 'rt bce Devops ${env.BUILD_NUMBER}'
           }
         }
     }
