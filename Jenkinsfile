@@ -21,8 +21,8 @@ pipeline {
 
         stage('Deploy to Artifactory') {
           steps {
-              jf "rt bce"
-              jf "rt build-publish"
+              jf "rt bce --project alpha"
+              jf "rt build-publish --project alpha"
 
           }
         }
