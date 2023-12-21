@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               jf 'mvn-config  --repo-deploy-releases alpha-maven-releases --repo-deploy-snapshots alpha-maven-snapshot --repo-resolve-releases alpha-maven-remote --repo-resolve-snapshots alpha-maven-snapshot-remote'
-               jf 'mvn clean install -U -X'
+               jf 'mvn-config --repo-resolve-releases alpha-maven-remote --repo-resolve-snapshots alpha-maven-remote-snaps --repo-deploy-releases alpha-maven-releases --repo-deploy-snapshots alpha-maven-snapshot '
+               jf 'mvn clean install'
             }
         }
 
