@@ -22,8 +22,6 @@ pipeline {
                     // Build the project
                     jf 'mvn clean install'
 
-                    jf "rt u target/*.jar alpha-build-info ${env.PROJECT} ${env.BUILD_NUMBER}"
-
                     // Collect build environment
                     jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
 
