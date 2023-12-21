@@ -21,9 +21,10 @@ pipeline {
 
         stage('Deploy to Artifactory') {
           steps {
-              jf "rt build-publish module1 ${env.BUILD_NUMBER} --project alpha"
-              jf "rt u target/*.jar alpha-maven-releases --build-name MODULE1 --build-number ${env.BUILD_NUMBER}" 
+              jf "rt u target/*.jar alpha-maven-releases --build-name module1 --build-number ${env.BUILD_NUMBER}" 
               jf "rt bce module1 --project alpha"
+              jf "rt build-publish module1 ${env.BUILD_NUMBER} --project alpha"
+
           }
         }
     }
