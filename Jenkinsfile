@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                jf 'mvn-config --repo-resolve-releases alpha-maven-remote --repo-resolve-snapshots alpha-maven-remote-snaps --repo-deploy-releases alpha-maven-releases --repo-deploy-snapshots alpha-maven-snapshot '
-               jf 'mvn clean install'
+               jf 'mvn clean install --build-name alpha-maven --build-number 1.0.0'
             }
         }
 
