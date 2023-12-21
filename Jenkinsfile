@@ -23,8 +23,7 @@ pipeline {
           steps {
               jf "rt build-publish module1 ${env.BUILD_NUMBER} --project alpha"
               jf "rt u target/*.jar alpha-maven-releases --build-name MODULE1 --build-number ${env.BUILD_NUMBER}" 
-	      jf 'rt build-publish'
-              jf "rt bce MODULE1"
+              jf "rt bce module1 --project alpha"
           }
         }
     }
