@@ -74,22 +74,4 @@
       </plugin>
     </plugins>
   </build>
- <distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>b03fc650f11c-releases</name>
-        <url>http://172.17.0.3:8081/artifactory/Aplha</url>
-    </repository>
-    <snapshotRepository>
-        <id>snapshots</id>
-        <name>b03fc650f11c-snapshots</name>
-        <url>http://172.17.0.3:8081/artifactory/Apha-snapshots</url>
-    </snapshotRepository>
-</distributionManagement>
-    <scm>
-        <connection>scm:git:https://github.com/iamanirudha/simple-java-maven-app.git</connection>
-        <developerConnection>scm:git:https://github.com/iamanirudha/simple-java-maven-app.git</developerConnection>
-        <url>https://github.com/iamanirudha/simple-java-maven-app</url>
-      <tag>my-app-2.0</tag>
-  </scm>
 </project>
