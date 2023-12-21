@@ -23,10 +23,10 @@ pipeline {
                     jf 'mvn clean install'
 
                     // Collect build environment
-                    jf "rt bce ${env.PROJECT_KEY} ${env.BUILD_NUMBER}"
+                    jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
 
                     // Publish the build information
-                    jf "rt build-publish ${env.PROJECT_KEY} ${env.BUILD_NUMBER}"
+                    jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
                 }
             }
         }
