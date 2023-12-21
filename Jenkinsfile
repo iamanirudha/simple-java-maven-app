@@ -15,14 +15,14 @@ pipeline {
         stage('Build') {
             steps {
                jf 'mvn-config --repo-resolve-releases alpha-maven-remote --repo-resolve-snapshots alpha-maven-remote-snaps --repo-deploy-releases alpha-maven-releases --repo-deploy-snapshots alpha-maven-snapshot '
-               jf 'mvn clean install --build-name alpha-maven --build-number 1.0.0'
+               jf 'mvn clean install'
             }
         }
 
         stage('Deploy to Artifactory') {
           steps {
-              jf "rt bce --project alpha"
-              jf "rt build-publish --project alpha"
+              jf "rt bce"
+              jf "rt build-publish"
 
           }
         }
