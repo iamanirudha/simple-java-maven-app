@@ -16,7 +16,7 @@ pipeline {
 
         stage('Deploy to Artifactory') {
           steps {
-             sh "echo Deploy to Jfrog"
+             jf "rt build-publish module1 ${env.BUILD_NUMBER} --project alpha"
           }
         }
     }
