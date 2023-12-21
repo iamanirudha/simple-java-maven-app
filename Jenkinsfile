@@ -5,6 +5,11 @@ pipeline {
        maven 'maven3'
        jfrog 'jfrog-cli'
     }
+    environment {
+        PROJECT = "Alpha"
+        PROJECT_KEY = "alpha"
+        DEPLOYMENT_TYPE = "Developement"
+    }
 
     stages {
         stage('Build') {
@@ -17,6 +22,9 @@ pipeline {
         stage('Deploy to Artifactory') {
           steps {
              jf "rt build-publish module1 ${env.BUILD_NUMBER} --project alpha"
+          jf "rt u target/*.jar alpha-maven-releases --build-name MODULE1 --build-number ${env.BUILD_NUMBER}" 
+	      jf 'rt build-publish'
+          jf "rt bce MODULE1"
           }
         }
     }
