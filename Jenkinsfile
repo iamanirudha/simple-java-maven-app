@@ -22,8 +22,8 @@ pipeline {
         stage('Deploy to Artifactory') {
           steps {
               jf "rt u target/*.jar alpha-maven-releases --build-name demo --build-number ${env.BUILD_NUMBER}" 
-              jf "rt bce demo --project alpha"
-              jf "rt build-publish demo ${env.BUILD_NUMBER} --project alpha"
+              jf "rt bce demo"
+              jf "rt build-publish"
 
           }
         }
