@@ -7,8 +7,8 @@ pipeline {
     }
 
     environment {
-        PROJECT = "Alpha"
-        PROJECT_KEY = "alpha"
+        PROJECT = "Delta"
+        PROJECT_KEY = "delta"
         DEPLOYMENT_TYPE = "Development"
     }
 
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings
-                    jf 'mvn-config --repo-resolve-releases alpha-maven-remote --repo-resolve-snapshots alpha-maven-remote-snaps --repo-deploy-releases alpha-maven-releases --repo-deploy-snapshots alpha-maven-snaps'
+                    jf 'mvn-config --repo-resolve-releases delta-releases-repo --repo-resolve-snapshots delta-snapshot-repo --repo-deploy-releases delta-remote-repo --repo-deploy-snapshots delta-remote-snap'
 
                     // Build the project
                     jf 'mvn clean install'
