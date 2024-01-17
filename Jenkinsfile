@@ -16,8 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Configure Maven settings
-                    jf 'mvn-config --repo-resolve-releases delta-releases-repo --repo-resolve-snapshots delta-snapshot-repo --repo-deploy-releases delta-remote-repo --repo-deploy-snapshots delta-remote-snap'
+                    // Configure Maven settings --repo-deploy-releases delta-remote-repo --repo-deploy-snapshots delta-remote-snap
+                    jf 'mvn-config --repo-resolve-releases delta-releases-repo --repo-resolve-snapshots delta-snapshot-repo'
 
                     // Build the project
                     jf 'mvn clean install'
