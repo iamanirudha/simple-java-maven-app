@@ -17,12 +17,12 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings 
-                    // jf 'mvn-config --repo-deploy-releases delta-releases-repo --repo-deploy-snapshots delta-snapshot-repo --repo-resolve-releases delta-remote-repo  --repo-resolve-snapshots  delta-remote-repo'
+                    jf 'mvn-config --repo-deploy-releases delta-releases-repo --repo-deploy-snapshots delta-snapshot-repo --repo-resolve-releases delta-remote-repo  --repo-resolve-snapshots  delta-remote-repo'
 
                     // Build the project
-                    jf 'mvn clean install'
+                    jf 'mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER} --project  ${env.PROJECT_KEY}'
 
-                    jf "rt u target/*.jar delta-releases-repo --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
+                    // jf "rt u target/*.jar delta-releases-repo --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
 
                     // Collect build environment --project ${env.PROJECT_KEY}
                     jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} "
