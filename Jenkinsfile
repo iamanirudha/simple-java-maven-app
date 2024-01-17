@@ -24,11 +24,11 @@ pipeline {
 
                     jf "rt u target/*.jar delta-releases-repo --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
 
-                    // Collect build environment 
-                    jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
+                    // Collect build environment --project ${env.PROJECT_KEY}
+                    jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} "
 
-                    // Publish the build information 
-                    jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
+                    // Publish the build information --project ${env.PROJECT_KEY}
+                    jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER} "
                 }
             }
         }
