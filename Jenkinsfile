@@ -16,7 +16,7 @@ pipeline {
         stage('Init'){
             steps{
                 script{
-                    sh "./init.sh"
+                    sh "./scripts/init.sh"
                     // echo "Intializing the pipeline variables"
                     // def branchWithPrefix = env.GIT_BRANCH ?: 'master'
 
