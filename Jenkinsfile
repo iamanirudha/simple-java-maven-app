@@ -13,34 +13,38 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage ('Artifactory configuration') {
             steps {
-                script {
-                    // Configure Maven settings 
-                    jf 'mvn-config --repo-deploy-releases delta-releases-repo --repo-deploy-snapshots delta-snapshot-repo --repo-resolve-releases delta-remote-repo  --repo-resolve-snapshots  delta-remote-repo'
+                rtServer (
+                    id: "jfrog-server",
+                    url: 172.17.0.3,
+                    credentialsId: jfrog
+                )
 
-                    // Build the project
-                    jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER} --project  ${env.PROJECT_KEY}"
+                rtMavenDeployer (
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "jfrog-server",
+                    releaseRepo: "delta-releases-repo",
+                    snapshotRepo: "delta-snapshot-repo"
+                )
 
-                    // jf "rt u target/*.jar delta-releases-repo --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
-
-                    // Collect build environment 
-                    jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
-
-                    // Publish the build information --project ${env.PROJECT_KEY}
-                    jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
-
-                    // Promote the build to DEV and create Release Bundle.
-                }
+                // rtMavenResolver (
+                //     id: "MAVEN_RESOLVER",
+                //     serverId: "ARTIFACTORY_SERVER",
+                //     releaseRepo: ARTIFACTORY_VIRTUAL_RELEASE_REPO,
+                //     snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO
+                // )
             }
         }
-
-        stage('Deploy to Artifactory') {
+        
+        stage ('Exec Maven') {
             steps {
-                script {
-                    // Deployment steps go here
-                    echo 'Deploying to Artifactory...'
-                }
+                rtMavenRun (
+                    tool: maven, // Tool name from Jenkins configuration
+                    pom: './pom.xml',
+                    goals: 'clean install',
+                    deployerId: "MAVEN_DEPLOYER",
+                )
             }
         }
     }
