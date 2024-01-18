@@ -17,9 +17,26 @@ pipeline {
             steps{
                 script{
                     echo "Intializing the pipeline variables"
-                    env.DEPLOYMENT_TYPE = "Development"
-                    sh "export"
-                    echo "Branch is ${branchName}"
+                    def branchWithPrefix = env.GIT_BRANCH ?: 'master'
+
+                    // Extract the branch name without the "origin/" prefix
+                    def branchName = branchWithPrefix.replaceAll(/^origin\//, '')
+
+                    // Check the branch name and set DEPLOY_TO variable
+                    if (branchName == 'main') {
+                        DEPLOY_TO = 'PRD'
+                    } else if (branchName == 'develop') {
+                        DEPLOY_TO = 'DEV'
+                    } else if (branchName.startsWith('feature')) {
+                        DEPLOY_TO = 'DEV'
+                    }
+                      else {
+                        DEPLOY_TO = 'UAT'
+                    }
+
+                    // Print the branch name and DEPLOY_TO value
+                    echo "Branch Name without prefix: ${branchName}"
+                    echo "Deploy To: ${DEPLOY_TO}"
                 }
             }
         }
