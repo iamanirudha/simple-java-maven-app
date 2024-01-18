@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build artifacts'){
             when{
-                    branch 'origin/feature-*'             
+                    branch 'origin/feature-workflow'             
             }
             steps{
                 script{
