@@ -19,7 +19,7 @@ pipeline {
                     sh "chmod 755 scripts/init.sh"
                     sh "./scripts/init.sh"
 
-                    sh 'source env.properties'
+                    sh '. env.properties'
 
                     DEPLOYMENET_ENV = env.DEPLOYMENET_ENV
 
