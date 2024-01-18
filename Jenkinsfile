@@ -21,7 +21,7 @@ pipeline {
         stage('Build artifacts'){
             when{
                 expression{
-                    env.BRANCH_NAME ==~ /(feature-*|main)/
+                    env.BRANCH_NAME.startsWith('feature') || env.BRANCH_NAME == 'main'
                 }
             }
             steps{
