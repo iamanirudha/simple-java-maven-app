@@ -21,7 +21,10 @@ pipeline {
 
         stage('Build artifacts'){
             when{
-                    branch 'origin/feature-workflow'             
+                anyOf{
+                    branch 'feature-*'
+                    branch 'master'
+                }
             }
             steps{
                 script{
