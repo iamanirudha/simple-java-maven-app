@@ -16,7 +16,7 @@ pipeline {
             steps{
                 script{
                     echo "Intializing the pipeline variables"
-                    def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    def branchName = (env.GIT_BRANCH =~ /origin\/(.*)/ ? env.GIT_BRANCH[1] : 'master').trim()
                     env.BRANCH_NAME = branchName 
                     env.DEPLOYMENT_TYPE = "Development"
                     sh "export"
