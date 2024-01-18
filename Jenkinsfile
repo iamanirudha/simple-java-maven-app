@@ -10,6 +10,7 @@ pipeline {
         PROJECT_KEY = ""
         RELEASES_REPO = ""
         SNAPSHOT_REPO = ""
+        BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
     }
     stages{
         stage('Init'){
