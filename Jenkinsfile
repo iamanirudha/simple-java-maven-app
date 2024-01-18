@@ -20,8 +20,9 @@ pipeline {
 
         stage('Build artifacts'){
             when{
-                expression{
-                    env.BRANCH_NAME =~ /(feature.*|master)/
+                anyOf{
+                    branch 'feature-*'
+                    branch 'main'
                 }
             }
             steps{
