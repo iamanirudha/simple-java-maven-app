@@ -21,10 +21,7 @@ pipeline {
 
         stage('Build artifacts'){
             when{
-                anyOf{
-                    branch 'feature-*'
-                    branch 'master'
-                }
+              expression { params.GIT_BRANCH ==~ /(feature.*|main|origin/feature-workflow)/ }
             }
             steps{
                 script{
