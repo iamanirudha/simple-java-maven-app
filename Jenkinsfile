@@ -29,6 +29,8 @@ pipeline {
 
                     // Publish the build information --project ${env.PROJECT_KEY}
                     jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
+
+                    // Promote the build to DEV and create Release Bundle.
                 }
             }
         }
