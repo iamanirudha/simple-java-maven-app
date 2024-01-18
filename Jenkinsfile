@@ -18,6 +18,12 @@ pipeline {
                 script{
                     sh "chmod 755 scripts/init.sh"
                     sh "./scripts/init.sh"
+
+                    load 'env.properties'
+
+                    DEPLOYMENET_ENV = env.DEPLOYMENET_ENV
+
+                    sh "export"
                     // echo "Intializing the pipeline variables"
                     // def branchWithPrefix = env.GIT_BRANCH ?: 'master'
 
