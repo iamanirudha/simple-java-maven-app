@@ -14,16 +14,14 @@ pipeline {
     stages{
         stage('Init'){
             steps{
+                sh "export"
                 sh "echo Initialization step"
             }
         }
 
         stage('Build artifacts'){
             when{
-                anyOf{
-                    branch 'feature-*'
-                    branch 'main'
-                }
+                    branch 'feature-*'             
             }
             steps{
                 script{
