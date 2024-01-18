@@ -28,12 +28,12 @@ pipeline {
                     snapshotRepo: "delta-snapshot-repo"
                 )
 
-                // rtMavenResolver (
-                //     id: "MAVEN_RESOLVER",
-                //     serverId: "ARTIFACTORY_SERVER",
-                //     releaseRepo: ARTIFACTORY_VIRTUAL_RELEASE_REPO,
-                //     snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO
-                // )
+                rtMavenResolver (
+                    id: "MAVEN_RESOLVER",
+                    serverId: "jfrog-server",
+                    releaseRepo:  "delta-remote-repo" ,
+                    snapshotRepo: "delta-remote-repo"
+                )
             }
         }
         
@@ -44,6 +44,7 @@ pipeline {
                     pom: './pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
                 )
             }
         }
