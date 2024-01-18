@@ -17,8 +17,8 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog-server",
-                    url: 172.17.0.3,
-                    credentialsId: jfrog
+                    url: "172.17.0.3",
+                    credentialsId: "jfrog"
                 )
 
                 rtMavenDeployer (
