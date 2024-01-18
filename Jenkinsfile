@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build artifacts'){
             when{
-              expression { env.GIT_BRANCH ==~ /(feature.*|main|origin/feature-workflow)/ }
+              expression { env.GIT_BRANCH ==~ /(feature.*|main|origin\/feature-workflow)/ }
             }
             steps{
                 script{
