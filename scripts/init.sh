@@ -21,4 +21,4 @@ echo "Deploy To: $DEPLOY_TO"
 
 # Export DEPLOY_TO variable for Jenkins to use
 echo "export DEPLOY_TO=$DEPLOYMENT_ENV" > env.properties
-echo "export BRANCH_NAME=$branchName" > env.properties
+echo "export BRANCH_NAME=$branchName" >> env.properties
