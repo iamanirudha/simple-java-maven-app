@@ -44,7 +44,10 @@ pipeline {
                     pom: './pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
-                    resolverId: "MAVEN_RESOLVER"
+                    resolverId: "MAVEN_RESOLVER",
+                    buildName: "${env.PROJECT}",
+                    buildNumber: "${env.BUILD_NUMBER}",
+                    project: "${env.PROJECT_KEY}" 
                 )
             }
         }
