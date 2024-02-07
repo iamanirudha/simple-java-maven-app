@@ -4,7 +4,8 @@
 branchWithPrefix=${GIT_BRANCH:-'master'}
 
 # Extract the branch name without the "origin/" prefix
-branchName=$(echo $branchWithPrefix | sed 's/^origin\///')
+# branchName=$(echo $branchWithPrefix | sed 's/^origin\///') 
+  branchName=$(echo $branchWithPrefix | sed 's|^origin/||')
 
 # Check the branch name and set DEPLOY_TO variable
 if [[ "$branchName" == "main" ]]; then
