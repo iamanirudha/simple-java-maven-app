@@ -31,6 +31,7 @@ pipeline {
                     jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
 
                     // Promote the build to DEV and create Release Bundle.
+                    jf "rt dl --bundle delta-84-1.2/2.0"
                 }
             }
         }
