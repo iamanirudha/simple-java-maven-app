@@ -4,7 +4,7 @@ pipeline {
     tools{
          maven 'maven3'
          jfrog 'jfrog-cli'
-         java  'jdk8'
+         // java  'jdk8'
     }
     /*
     DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING.
