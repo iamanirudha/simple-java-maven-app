@@ -4,7 +4,7 @@ pipeline {
     tools{
          maven 'maven3'
          jfrog 'jfrog-cli'
-         // java  'jdk8'
+         java  'jdk8'
     }
     /*
     DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING.
@@ -31,7 +31,7 @@ pipeline {
         stage("Install 3rd party jar"){
             when{
                 expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
+                    env.GIT_BRANCH ==~ /(origin\/feature.*|origin\/develop)/
                 }
             }
             steps{
@@ -43,7 +43,7 @@ pipeline {
         stage('Build artifacts'){
             when{
                 expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
+                    env.GIT_BRANCH ==~ /(origin\/feature.*|origin\/develop)/
                 }
             }
             steps{
@@ -63,14 +63,14 @@ pipeline {
             steps{
                 sh "echo build-publish"
                 sh "echo Create release bundle"
-                sh "protmote to UAT"
+                sh "echo protmote to UAT"
             }
         }
 
         stage('Sonar scan'){
             when{
                 expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
+                    env.GIT_BRANCH ==~ /(origin\/feature.*|origin\/develop)/
                 }
             }
             steps{
@@ -81,7 +81,7 @@ pipeline {
         stage('Deploy to DEV'){
             when{
                 expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
+                    env.GIT_BRANCH ==~ /(origin\/feature.*|origin\/develop)/
                 }
             }
             steps{
