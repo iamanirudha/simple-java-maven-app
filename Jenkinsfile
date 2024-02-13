@@ -5,13 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Read the Maven POM file
-                    def pom = readMavenPom file: 'pom.xml'
+                    // Read the version from the POM file
+                    def version = sh(script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true).trim()
 
-                    // Retrieve the version of the EPSCORE artifact
-                    def epscoreVersion = pom.dependencies.find { it.artifactId == 'junit-jupiter-api' }?.version
-
-                    echo "Version of junit-jupiter-api: ${epscoreVersion}"
+                    echo "Maven Project Version: ${version}"
                 }
             }
         }
