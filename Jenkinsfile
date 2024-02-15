@@ -23,92 +23,36 @@ pipeline {
         stage('Init'){
             steps{
                 script{
-                    echo "setup Intial environment"
+                    def pom = readMavenPom file: './pom.xml'
+
+                    // Define the groupId and artifactId of the dependency you want to check
+                    def groupId = 'org.junit.jupiter'
+                    def artifactId = 'junit-jupiter-api'
+
+                    // Find the dependency in the POM
+                    def dependency = pom.getDependencies().find {
+                        it.getGroupId() == groupId && it.getArtifactId() == artifactId
+                    }
+
+                    // Extract the version of the dependency
+                    def dependencyVersion = dependency.getVersion()
+
+                    // Print the version
+                    echo "Version of ${groupId}:${artifactId} is ${dependencyVersion}"
                 }
             }
         }
 
-        stage("Install 3rd party jar"){
-            when{
-                expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
-                }
-            }
-            steps{
-                sh "echo Downloading the jar"
-                sh "echo mvn install:install-file"
-            }
-        }
-
-        stage('Build artifacts'){
-            when{
-                expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
-                }
-            }
-            steps{
-                script{
-                    echo "mvn -f pom.xml clean install"
-                    echo "upload artifact to Jfrog repo"
-                }
-            }
-        }
-
-        stage('Publish'){
-            when{
-                expression {
-                    env.GIT_BRANCH ==~ /(origin\/develop)/
-                }
-            }
-            steps{
-                sh "echo build-publish"
-                sh "echo Create release bundle"
-                sh "protmote to UAT"
-            }
-        }
-
-        stage('Sonar scan'){
-            when{
-                expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
-                }
-            }
-            steps{
-                sh "echo mvn"
-            }    
-        }
-
-        stage('Deploy to DEV'){
-            when{
-                expression {
-                    env.GIT_BRANCH ==~ /(origin\/feature.*|develop)/
-                }
-            }
-            steps{
-                sh "echo Deploy to DEV"
-            }
-        }
-
-        stage('Deploy to UAT'){
-            when{
-                expression {
-                    env.GIT_BRANCH ==~ /(origin\/uat)/
-                }
-            }
-            steps{
-                sh "echo Deploy to UAT"
-            }
-        }
-
-        stage('Deploy to PROD'){
-            when{
-                expression {
-                    env.GIT_BRANCH ==~ /(origin\/prod)/
-                }
-            }
-            steps{
-                sh "echo Deploy to PROD"
-            }
-        }
+       
+        // stage('Deploy to PROD'){
+        //     when{
+        //         expression {
+        //             env.GIT_BRANCH ==~ /(origin\/prod)/
+        //         }
+        //     }
+        //     steps{
+        //         sh "echo Deploy to PROD"
+        //     }
+        // }
     }
 }
