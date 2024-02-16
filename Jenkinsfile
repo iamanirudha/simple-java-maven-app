@@ -17,8 +17,8 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings 
-                    // jf 'mvn-config --repo-deploy-releases delta-releases-repo --repo-deploy-snapshots delta-snapshot-repo --repo-resolve-releases delta-remote-repo  --repo-resolve-snapshots  delta-remote-repo'
-                    sh "mvn -f ./pom.xml clean install"
+                    jf 'mvn-config --repo-deploy-releases delta-releases-repo --repo-deploy-snapshots delta-snapshot-repo --repo-resolve-releases delta-remote-repo  --repo-resolve-snapshots  delta-remote-repo'
+                    jf  "mvn install:install-file"
                     // Build the project
                     // jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER} --project  ${env.PROJECT_KEY}"
 
