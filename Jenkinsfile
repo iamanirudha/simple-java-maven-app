@@ -18,7 +18,8 @@ pipeline {
                 script {
                     // Configure Maven settings 
                     jf 'mvn-config --repo-deploy-releases delta-releases-repo --repo-deploy-snapshots delta-snapshot-repo --repo-resolve-releases delta-virtual-repo  --repo-resolve-snapshots  delta-virtual-repo'
-                   
+
+                    jf "rt dl http://172.17.0.3:8082/artifactory/delta-virtual-repo//artifactory/oss-release-local/org/jfrog/buildinfo/build-info-extractor-maven3/2.41.12/build-info-extractor-maven3-2.41.12-uber.jar"
                     // Build the project
                     jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER} --project  ${env.PROJECT_KEY}"
 
