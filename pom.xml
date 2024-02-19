@@ -22,12 +22,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-<repositories>
-  <repository>
-  <id>central</id>
-  <url>http://172.17.0.2:8081/artifactory/delta-releases-repo</url>
-  </repository>
-</repositories>
   <build>
     <pluginManagement>
       <plugins>
