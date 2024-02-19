@@ -22,6 +22,8 @@ pipeline {
                     // Build the project
                     jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER} --project  ${env.PROJECT_KEY}"
 
+                    sh "export"
+
                     // jf "rt u target/*.jar delta-releases-repo --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
 
                     // Collect build environment 
