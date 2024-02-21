@@ -22,7 +22,7 @@ pipeline {
                     // Build the project
                     jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER} --project  ${env.PROJECT_KEY}"
 
-                    sh "checksum=$(sha256sum target/*.jar | awk '{print $1}'"
+                    checksum=$(sha256sum target/*.jar | awk '{print $1}'
 
                     jf "rt sp target/*.jar checksum=$checksum"
 
