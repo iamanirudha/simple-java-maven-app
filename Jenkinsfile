@@ -17,22 +17,19 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings 
-                    jf 'mvn-config --repo-deploy-releases delta-releases-repo --repo-deploy-snapshots delta-snapshot-repo --repo-resolve-releases delta-virtual-repo  --repo-resolve-snapshots  delta-virtual-repo'
+                    jf 'mvn-config --repo-deploy-releases charlie-libs-release-local --repo-deploy-snapshots charlie-libs-release-local'
 
                     // Build the project
-                    jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER} --project  ${env.PROJECT_KEY}"
+                    jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
 
                     
-
-                    jf "rt sp target/*.jar checksum=1234m"
-
                     // jf "rt u target/*.jar delta-releases-repo --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
 
                     // Collect build environment 
-                    jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
+                    jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} "
 
                     // Publish the build information --project ${env.PROJECT_KEY}
-                    jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER} --project ${env.PROJECT_KEY}"
+                    jf "rt build-publish ${env.PROJECT} ${env.BUILD_NUMBER}"
 
                     // Promote the build to DEV and create Release Bundle.
                     // jf "rt dl delta-prod-releases/com/mycompany/app/my-app/1.3/my-app-1.3.jar ."
