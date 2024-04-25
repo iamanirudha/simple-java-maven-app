@@ -23,7 +23,6 @@ pipeline {
                     jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
 
                     
-                    // jf "rt u target/*.jar delta-releases-repo --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
 
                     // Collect build environment 
                     jf "rt bce ${env.PROJECT} ${env.BUILD_NUMBER} "
