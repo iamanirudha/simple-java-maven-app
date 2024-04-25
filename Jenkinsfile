@@ -17,6 +17,7 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings 
+                    sh "export"
                     jf 'mvn-config --repo-deploy-releases charlie-libs-release-local --repo-deploy-snapshots charlie-libs-release-local'
 
                     // Build the project
