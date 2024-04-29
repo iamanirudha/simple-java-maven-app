@@ -18,7 +18,7 @@ pipeline {
                 script {
                     // Configure Maven settings 
                     sh "export"
-                    jf 'mvn-config --repo-deploy-releases charlie-libs-release-local --repo-deploy-snapshots charlie-libs-release-local'
+                    jf 'mvn-config --repo-deploy-releases poc-repo --repo-deploy-snapshots poc-repo'
 
                     // Build the project
                     jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
