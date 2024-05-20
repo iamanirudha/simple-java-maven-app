@@ -1,25 +1,41 @@
 #!/bin/bash
+export GIT_BRANCH=develop
 
-# Get the branch name from the GIT_BRANCH variable
-branchWithPrefix=${GIT_BRANCH:-'master'}
+# Ensure GIT_BRANCH variable is set.
+# GIT_BRANCH variable is pre-defined only in Jenkins Multibranch pipeline.
 
-# Extract the branch name without the "origin/" prefix
-# branchName=$(echo $branchWithPrefix | sed 's/^origin\///') 
-  branchName=$(echo $branchWithPrefix | sed 's|^origin/||')
-
-# Check the branch name and set DEPLOY_TO variable
-if [[ "$branchName" == "main" ]]; then
-    DEPLOY_TO='PRD'
-elif [[ "$branchName" == "develop" || "$branchName" == feature* ]]; then
-    DEPLOY_TO='DEV'
-else
-    DEPLOY_TO='UAT'
+if [ -z "$GIT_BRANCH" ]; then
+  echo "GIT_BRANCH variable is undefined, make sure you are running a Multibranch pipeline."
+  exit 1
 fi
 
-# Print the branch name and DEPLOY_TO value
-echo "Branch Name without prefix: $branchName"
-echo "Deploy To: $DEPLOY_TO"
+# Use a case statement to check the branch and run commands
+case "$GIT_BRANCH" in
+  develop)
+    echo "On the develop branch. Running develop branch commands."
+    echo "export MAVEN_DEPLOY_REPO=poc-repo" > dotenv
+    echo "export MAVEN_RESOLVE_REPO=poc-resolve-repo" >> dotenv
+    # Add commands specific to the develop branch
+    ;;
+  feature*)
+    echo "On a feature branch. Running feature branch commands."
+    # Add commands specific to feature branches
+    ;;
+  *)
+    echo "On an unspecified branch. Running default commands."
+    # Add default commands for other branches
+    ;;
+esac
 
-# Export DEPLOY_TO variable for Jenkins to use
-echo "export DEPLOYMENT_ENV=$DEPLOY_TO" > env.properties
-echo "export BRANCH_NAME=$branchName" >> env.properties
+
+# Extract values from pom.xml using mvn help:evaluate
+GROUP_ID=$(mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout)
+ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
+VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+ARTIFACT_NAME="${GROUP_ID}:${ARTIFACT_ID}:${VERSION}"
+
+# Output the extracted values
+echo "Group ID: $GROUP_ID"
+echo "Artifact ID: $ARTIFACT_ID"
+echo "Version: $VERSION"
+echo "Artifact Name: $ARTIFACT_NAME"
