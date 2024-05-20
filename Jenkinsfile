@@ -15,8 +15,8 @@ pipeline {
 
                     sh '. ./dotenv'
 
-                    env.MAVEN_DEPLOY_REPO = "$MAVEN_DEPLOY_REPO"
-                    env.MAVEN_RESOLVE_REPO = "$MAVEN_RESOLVE_REPO"
+                    env.DEPLOY_REPO = "$MAVEN_DEPLOY_REPO"
+                    env.RESOLVE_REPO = "$MAVEN_RESOLVE_REPO"
 
                     sh "export"
                 }
@@ -28,7 +28,7 @@ pipeline {
             steps{
                 script{
                     
-                    echo "Building the artifacts for ${env.MAVEN_DEPLOY_REPO} ...."
+                    echo "Building the artifacts for ${env.DEPLOY_REPO} ...."
                 }
             }
         }
