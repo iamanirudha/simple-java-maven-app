@@ -16,8 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Configure Maven settings --repo-deploy-releases charlie-libs-release --repo-resolve-releases charlie-libs-release
-                    jf 'mvn-config  --repo-deploy-snapshots charlie-libs-snapshot  --repo-resolve-snapshots charlie-libs-snapshot'
+                    // Configure Maven settings
+                    jf 'mvn-config   --repo-deploy-releases res-libs-release --repo-resolve-releases res-libs-release --repo-deploy-snapshots res-libs-snapshot  --repo-resolve-snapshots res-libs-snapshot'
 
                     // Build the project
                     jf "mvn clean install --build-name ${env.PROJECT} --build-number ${env.BUILD_NUMBER}"
