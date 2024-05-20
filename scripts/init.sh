@@ -13,8 +13,9 @@ fi
 case "$GIT_BRANCH" in
   develop)
     echo "On the develop branch. Running develop branch commands."
-    echo "export MAVEN_DEPLOY_REPO=poc-repo" > dotenv
-    echo "export MAVEN_RESOLVE_REPO=poc-resolve-repo" >> dotenv
+    export MAVEN_DEPLOY_REPO=poc-repo
+    export MAVEN_RESOLVE_REPO=poc-resolve-repo
+    jf mvn-config --repo-deploy-releases $MAVEN_DEPLOY_REPO --repo-deploy-snapshots $MAVEN_RESOLVE_REPO
     # Add commands specific to the develop branch
     ;;
   feature*)
