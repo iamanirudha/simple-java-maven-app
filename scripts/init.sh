@@ -1,6 +1,6 @@
 #!/bin/bash
 export GIT_BRANCH=develop
-export JF_CLI="/var/jenkins_home/tools/io.jenkins.plugins.jfrog.JfrogInstallation/jfrog-cli/jf"
+export JF_CLI="./var/jenkins_home/tools/io.jenkins.plugins.jfrog.JfrogInstallation/jfrog-cli/jf"
 
 # Ensure GIT_BRANCH variable is set.
 # GIT_BRANCH variable is pre-defined only in Jenkins Multibranch pipeline.
