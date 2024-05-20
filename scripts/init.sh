@@ -1,6 +1,6 @@
 #!/bin/bash
 export GIT_BRANCH=develop
-export JF_CLI="./var/jenkins_home/tools/io.jenkins.plugins.jfrog.JfrogInstallation/jfrog-cli/jf"
+export JF_CLI="/var/jenkins_home/tools/io.jenkins.plugins.jfrog.JfrogInstallation/jfrog-cli"
 
 # Ensure GIT_BRANCH variable is set.
 # GIT_BRANCH variable is pre-defined only in Jenkins Multibranch pipeline.
@@ -16,7 +16,9 @@ case "$GIT_BRANCH" in
     echo "On the develop branch. Running develop branch commands."
     export MAVEN_DEPLOY_REPO=poc-repo
     export MAVEN_RESOLVE_REPO=poc-resolve-repo
-    $JF_CLI mvn-config --repo-deploy-releases $MAVEN_DEPLOY_REPO --repo-deploy-snapshots $MAVEN_RESOLVE_REPO
+    pushd $JF_CLI
+    ./jf mvn-config --repo-deploy-releases $MAVEN_DEPLOY_REPO --repo-deploy-snapshots $MAVEN_RESOLVE_REPO
+    popd
     # Add commands specific to the develop branch
     ;;
   feature*)
