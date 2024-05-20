@@ -15,8 +15,8 @@ pipeline {
 
                     sh '. ./dotenv'
 
-                    MAVEN_DEPLOY_REPO = env.MAVEN_DEPLOY_REPO
-                    MAVEN_RESOLVE_REPO = env.MAVEN_RESOLVE_REPO
+                    env.MAVEN_DEPLOY_REPO = $MAVEN_DEPLOY_REPO
+                    env.MAVEN_RESOLVE_REPO = $MAVEN_RESOLVE_REPO
 
                     sh "export"
                 }
