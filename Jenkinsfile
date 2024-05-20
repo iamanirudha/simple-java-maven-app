@@ -27,8 +27,8 @@ pipeline {
 
             steps{
                 script{
-                    export
-                    echo "Building the artifacts ...."
+                    
+                    echo "Building the artifacts for env.MAVEN_DEPLOY_REPO ...."
                 }
             }
         }
