@@ -14,7 +14,7 @@ pipeline {
                     sh "./scripts/init.sh"
 
                     sh '. ./dotenv'
-                    sh "echo $MAVEN_DEPLOY_REPO"
+                    echo "$MAVEN_DEPLOY_REPO"
 
 
 
