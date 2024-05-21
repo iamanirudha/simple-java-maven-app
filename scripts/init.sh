@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Project is $PROJECT"
 export GIT_BRANCH=develop
 export JF_CLI="/var/jenkins_home/tools/io.jenkins.plugins.jfrog.JfrogInstallation/jfrog-cli"
 
