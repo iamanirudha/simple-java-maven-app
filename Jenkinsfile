@@ -27,7 +27,7 @@ pipeline {
             steps{
                 script{
                     sh '. ./dotenv'
-                    echo "Building the artifacts for ${env.MAVEN_DEPLOY_REPO} ...."
+                    echo "Building the artifacts for ${MAVEN_DEPLOY_REPO} ...."
                 }
             }
         }
