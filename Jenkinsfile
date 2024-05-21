@@ -14,7 +14,7 @@ pipeline {
                     sh "./scripts/init.sh"
 
                     sh '. ./dotenv'
-                    echo "$BUILD_NUMBER"
+                    echo "$MAVEN_DEPLOY_REPO"
 
 
 
