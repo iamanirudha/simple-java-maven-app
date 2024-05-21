@@ -5,6 +5,9 @@ pipeline {
          maven 'maven3'
          jfrog 'jfrog-cli'
     }
+    environment {
+        PROJECT = "ALPHA"
+    }
 
     stages{
         stage('Init'){
