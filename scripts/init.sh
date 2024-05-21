@@ -14,8 +14,8 @@ fi
 case "$GIT_BRANCH" in
   develop)
     echo "On the develop branch. Running develop branch commands."
-    export MAVEN_DEPLOY_REPO=poc-repo
-    export MAVEN_RESOLVE_REPO=poc-resolve-repo
+    export MAVEN_DEPLOY_REPO="poc-repo"
+    export MAVEN_RESOLVE_REPO="poc-resolve-repo"
     pushd $JF_CLI
     ./jf mvn-config --repo-deploy-releases $MAVEN_DEPLOY_REPO --repo-deploy-snapshots $MAVEN_RESOLVE_REPO
     popd
