@@ -13,8 +13,8 @@ pipeline {
                     sh "chmod 755 scripts/init.sh"
                     sh "./scripts/init.sh"
 
-                    sh ". ./dotenv"
-                    echo "$MAVEN_DEPLOY_REPO"
+                    sh ". ./dotenv && echo $MAVEN_DEPLOY_REPO"
+                    
 
 
 
