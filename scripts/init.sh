@@ -17,12 +17,12 @@ fi
 case "$GIT_BRANCH" in
   develop)
     echo "On the develop branch. Running develop branch commands."
-    jf mvn-config --repo-deploy-releases ${RELEASES_REPO} --repo-deploy-snapshots ${RELEASES_REPO}
+    /var/jenkins_home/bin/jf mvn-config --repo-deploy-releases ${RELEASES_REPO} --repo-deploy-snapshots ${RELEASES_REPO}
     # Add commands specific to the develop branch
     ;;
   feature*)
     echo "On a feature branch. Running feature branch commands."
-    jf mvn-config --repo-deploy-releases ${SNAPSHOT_REPO} --repo-deploy-snapshots ${SNAPSHOT_REPO}
+    /var/jenkins_home/bin/jf mvn-config --repo-deploy-releases ${SNAPSHOT_REPO} --repo-deploy-snapshots ${SNAPSHOT_REPO}
     # Add commands specific to feature branches
     ;;
   *)
