@@ -11,7 +11,7 @@ pipeline {
         RELEASES_REPO = "poc-repo"
         SNAPSHOT_REPO = "poc-snap"
         ARTIFACT_ID = readMavenPom().getArtifactId()
-        VERSION = readmavenPom().getVersion()
+        VERSION = readMavenPom().getVersion()
     }
 
     stages {
