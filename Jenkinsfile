@@ -8,10 +8,10 @@ pipeline {
 
     environment {
         PROJECT = "Delta"
-        PROJECT_KEY = "delta"
-        DEPLOYMENT_TYPE = "Development"
         RELEASES_REPO = "poc-repo"
         SNAPSHOT_REPO = "poc-snap"
+        ARTIFACT_ID = readMavenPom().getArtifactId()
+        VERSION = readmavenPom().getVersion()
     }
 
     stages {
