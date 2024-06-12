@@ -12,7 +12,7 @@ pipeline {
         SNAPSHOT_REPO = "poc-snap"
         ARTIFACT_ID = readMavenPom().getArtifactId()
         VERSION = readMavenPom().getVersion()
-        GROUP_ID = readMavenPom().getGroupId()
+        GROUP_ID = readMavenPom().getGroupId().replace('.', '/')
     }
 
     stages {
