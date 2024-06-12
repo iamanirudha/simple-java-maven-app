@@ -19,6 +19,7 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings 
+                    echo "${ARTIFACT_ID} ${VERSION}
                     sh "chmod 755 scripts/init.sh"
                     sh "./scripts/init.sh"
 
