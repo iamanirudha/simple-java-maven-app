@@ -20,7 +20,7 @@ pipeline {
                 script {
                     // Configure Maven settings 
                     sh "chmod 755 scripts/init.sh"
-                    sh "./init.sh"
+                    sh "./scripts/init.sh"
 
                 }
             }
