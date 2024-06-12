@@ -42,6 +42,7 @@ pipeline {
                 script {
                     // Deployment steps go here
                     echo 'Deploying to Artifactory...'
+                    jf "mvn clean install"
                 }
             }
         }
