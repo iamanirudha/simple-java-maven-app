@@ -22,6 +22,7 @@ pipeline {
                     echo "${ARTIFACT_ID} ${VERSION}"
                     sh "chmod 755 scripts/init.sh"
                     sh "./scripts/init.sh"
+                    
 
                 }
             }
@@ -32,6 +33,7 @@ pipeline {
                 script {
                     // Deployment steps go here
                     echo 'Deploying to Artifactory...'
+                    jf "mvn clean install"
                 }
             }
         }
