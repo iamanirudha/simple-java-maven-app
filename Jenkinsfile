@@ -62,6 +62,7 @@ pipeline {
 
               //Create Release Bundle
               jf " rbc --spec=upload-spec.json --signing-key=myorgpair myFirstRB 1.0.0"
+              jf "rbp --signing-key=myorgpair --input-repos='dev-rb-poc-delta' myFirstRB 1.0.0 DEV"
           }
       }
     }
