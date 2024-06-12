@@ -12,6 +12,7 @@ pipeline {
         SNAPSHOT_REPO = "poc-snap"
         ARTIFACT_ID = readMavenPom().getArtifactId()
         VERSION = readMavenPom().getVersion()
+        GROUP_ID = readMavenPom().getGroupId()
     }
 
     stages {
@@ -19,7 +20,8 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings 
-                    echo "${ARTIFACT_ID} ${VERSION}"
+                    echo "${ARTIFACT_ID} ${VERSION} ${GROUP_ID}"
+                    exit 1
                     sh "chmod 755 scripts/init.sh"
                     sh "./scripts/init.sh"
                 }
