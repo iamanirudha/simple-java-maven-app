@@ -14,6 +14,17 @@ pipeline {
                 echo "Building branch ${env.GIT_BRANCH}"
             }
         }
+        stage('Deploy to dummy branches') {
+            when {
+                allOf {
+                    branch pattern: "^dummy.*", comparator: "REGEXP"
+                    // triggeredBy 'UserIdCause'
+                }
+            }
+            steps {
+                echo "Deploying to dummy* environment"
+            }
+        }
         stage('Deploy to DEV') {
             when {
                 branch 'dev'
