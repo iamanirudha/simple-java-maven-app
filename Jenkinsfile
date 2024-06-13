@@ -20,8 +20,6 @@ pipeline {
             steps {
                 script {
                     // Configure Maven settings 
-                    echo "${ARTIFACT_ID} ${VERSION} ${GROUP_ID}"
-                    exit 1
                     sh "chmod 755 scripts/init.sh"
                     sh "./scripts/init.sh"
                 }
@@ -63,8 +61,8 @@ pipeline {
                 """
 
               //Create Release Bundle
-              // jf " rbc --spec=upload-spec.json --signing-key=myorgpair myFirstRB 1.0.0"
-              jf "rbp --signing-key=myorgpair --include-repos=dev-rb-poc-delta myFirstRB 1.0.0 DEV"
+              jf "rbc --spec=upload-spec.json --signing-key=myorgpair myFirstRB 1.1.0"
+              // jf "rbp --signing-key=myorgpair --include-repos=dev-rb-poc-delta myFirstRB 1.1.0 DEV"
           }
       }
     }
