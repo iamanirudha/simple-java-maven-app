@@ -3,6 +3,9 @@ pipeline {
     tools {
         maven 'maven3'
     }
+    parameters {
+        string(name: 'RB_URL', defaultValue: 'none', description: 'Release bundle URL for PROD')
+    }
 
     stages {
         stage('Build') {
@@ -43,7 +46,7 @@ pipeline {
             }
             steps {
                 input message: "Deploy to PROD?", ok: "Deploy"
-                echo "Deploying to PROD environment"
+                echo "Deploying Release bundle ${params.RB_URL} to PROD environment"
                 // Your PROD deployment steps here
             }
         }
