@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Deploy to PROD') {
             when {
-                branch 'uat'
+                branch 'prod'
                 triggeredBy 'UserIdCause'    
             }
             steps {
