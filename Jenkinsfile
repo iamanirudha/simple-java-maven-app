@@ -14,6 +14,19 @@ pipeline {
                 echo "Building branch ${env.GIT_BRANCH}"
             }
         }
+        stage('Deploy to dummy and dev') {
+            when {
+               
+                anyOf {
+                    branch pattern: '^dummy.*', comparator: 'REGEXP'
+                    branch 'dev'
+                    // You can add more branches or conditions here as needed
+                }
+            }
+            steps {
+                echo "Deploying to dummy* or dev environment"
+            }
+        }
         stage('Deploy to dummy branches') {
             when {
                
