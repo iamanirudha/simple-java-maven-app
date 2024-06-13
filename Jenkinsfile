@@ -14,13 +14,21 @@ pipeline {
                 echo "Building branch ${env.GIT_BRANCH}"
             }
         }
-
+        stage('Deploy to DEV') {
+            when {
+                branch 'dev'
+                triggeredBy 'UserIdCause'    
+            }
+            steps {
+                input message: "Deploy to DEV?", ok: "Deploy"
+                echo "Deploying to DEV environment"
+                // Your UAT deployment steps here
+            }
+        }
         stage('Deploy to UAT') {
             when {
                 branch 'uat'
-                not {
-                    triggeredBy 'UserIdCause'
-                }
+                triggeredBy 'UserIdCause'    
             }
             steps {
                 input message: "Deploy to UAT?", ok: "Deploy"
@@ -30,10 +38,8 @@ pipeline {
         }
         stage('Deploy to PROD') {
             when {
-                branch 'prod'
-                not {
-                    triggeredBy 'UserIdCause'
-                }
+                branch 'uat'
+                triggeredBy 'UserIdCause'    
             }
             steps {
                 input message: "Deploy to PROD?", ok: "Deploy"
