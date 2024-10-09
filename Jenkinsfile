@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven3'
-    }
+    // tools {
+    //     maven 'maven3'
+    // }
     parameters {
         string(name: 'RB_URL', defaultValue: 'none', description: 'Release bundle URL for PROD')
     }
@@ -45,7 +45,9 @@ pipeline {
                 triggeredBy 'UserIdCause'    
             }
             steps {
-                input message: "Deploy to PROD?", ok: "Deploy"
+                // input message: "Deploy to PROD?", ok: "Deploy"
+                sh "export"
+                sh "ls -l"
                 echo "Deploying Release bundle ${params.RB_URL} to PROD environment"
                 // Your PROD deployment steps here
             }
